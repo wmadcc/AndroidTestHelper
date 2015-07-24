@@ -18,7 +18,7 @@ def convert_database_to_py(local_utils, src_database_file=None, dest_py_dir=None
         if not os.path.exists(src_database_dir):
             os.makedirs(src_database_dir)
             
-        database_search_path = os.path.join(src_database_dir, '*.db3')
+        database_search_path = os.path.join(src_database_dir, '*.db')
         src_database_file_list = glob.glob(database_search_path)
         
         if len(src_database_file_list) == 0:
@@ -59,6 +59,7 @@ def convert_database_to_py(local_utils, src_database_file=None, dest_py_dir=None
     dest_file.write('DATA_DETAIL = "data_detail"\n\n')
     dest_file.write('CONFIG_DATA = [')
     
+    print tables_list
     for each_table in tables_list:
         dest_file.write('\n{')
         table_name = each_table[2]
