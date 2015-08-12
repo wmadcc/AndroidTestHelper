@@ -9,10 +9,6 @@
 /result
 /temp_dir
 
-# no source file in specific directory
-/src_database/**
-/apks_to_install/**
-/apk_to_resign/**
 
 # no pyc
 **.pyc
