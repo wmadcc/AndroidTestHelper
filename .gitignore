@@ -4,10 +4,10 @@
 .settings
 
 # no result or target files
-database_py/**
-dest_database/**
-result/**
-src_database/**
+database_py/
+dest_database/
+result/
+src_database/
 
 # no pyc
 **.pyc
