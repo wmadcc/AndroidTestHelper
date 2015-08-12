@@ -1,0 +1,13 @@
+# no eclipse project directory
+.project
+.pydevproject
+.settings
+
+# no result or target files
+database_py/**
+dest_database/**
+result/**
+src_database/**
+
+# no pyc
+**.pyc
