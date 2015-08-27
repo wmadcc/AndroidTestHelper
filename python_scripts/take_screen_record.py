@@ -8,6 +8,7 @@ import string
 from script_utils import utils
 from script_utils import static_variables
 
+
 def take_screen_record(local_utils, phone_result_dir_path=None,
                        result_dir_path=None, device_model=None, device_id=None):
     '''take a screen record from phone'''
@@ -26,7 +27,7 @@ def take_screen_record(local_utils, phone_result_dir_path=None,
     if device_model is not None:
         device_model = device_model.replace(' ', '_')
         device_model_dir_path = os.path.join(result_dir_path, device_model)
-        screen_record_path = os.path.join(device_model_dir_path, '%s_%s.mp4' \
+        screen_record_path = os.path.join(device_model_dir_path, '%s_%s.mp4'
                                           % (device_model, local_utils.timestamp()))
     else:
         device_model_dir_path = result_dir_path
@@ -61,7 +62,7 @@ def take_screen_record(local_utils, phone_result_dir_path=None,
 
     print 'delete temp video file in phone ...'
     rm_process = local_utils.run_adb('%s %s/video.mp4'
-                                      % (rm_str, phone_result_dir_path))
+                                     % (rm_str, phone_result_dir_path))
     (rm_process_stdout, rm_process_stderr) = rm_process.communicate()
     print rm_process_stdout
     print rm_process_stderr

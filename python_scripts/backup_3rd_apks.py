@@ -6,11 +6,12 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 def backup_3rd_apks_to(local_utils, backup_dir_path=None,
-                     device_id=None, device_model=None):
+                       device_id=None, device_model=None):
     apks_dict = local_utils.get_3rd_packages_dict(device_id, device_model)
     if len(apks_dict) == 0:
-        raise Exception, 'there is no 3rd apk!'
+        raise Exception('there is no 3rd apk!')
 
     if backup_dir_path is None:
         file_path = os.path.abspath(__file__)
@@ -53,7 +54,7 @@ if __name__ == '__main__':
             device_model = each_device.get('device_model')
             print 'backup apks for %s ...' % device_model
             result_path = backup_3rd_apks_to(local_utils=local_utils, backup_dir_path=None,
-                                           device_id=device_id, device_model=device_model)
+                                             device_id=device_id, device_model=device_model)
             print 'refer apks to dir %s for %s\n' % (result_path, device_model)
 
     except Exception, ex:

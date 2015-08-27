@@ -8,6 +8,7 @@ import shutil
 from script_utils import utils
 from script_utils import static_variables
 
+
 def resign_app_under_test(local_utils,
                           keystore_dir_path=None,
                           keystore_name='debug.keystore',
@@ -38,10 +39,10 @@ def resign_app_under_test(local_utils,
     print src_apk_list
     if len(src_apk_list) > 1:
         print 'search apk pattern is %s' % src_apk_path
-        raise Exception, 'over 2 target apk exist!'
+        raise Exception('over 2 target apk exist!')
     elif len(src_apk_list) == 0:
         print 'search apk pattern is %s' % src_apk_path
-        raise Exception, 'no target apk exist!'
+        raise Exception('no target apk exist!')
 
     if resigned_apk_dir is None:
         resigned_apk_dir = os.path.join(root_dir, static_variables.RESIGNED_APK_DIR_NAME)
@@ -53,7 +54,7 @@ def resign_app_under_test(local_utils,
         resigned_apk_name = local_utils.get_file_name(target_apk_path) + '_resigned.apk '
 
     print 'rename apk to zip file ...'
-    apk_zip_path =  target_apk_path + '.zip'
+    apk_zip_path = target_apk_path + '.zip'
     os.rename(target_apk_path, apk_zip_path)
 
     print 'unzip apk zip to directory ...'
@@ -76,7 +77,7 @@ def resign_app_under_test(local_utils,
 
     resigned_temp_apk_path = os.path.join(src_apk_dir, resigned_temp_apk_name)
     resigned_apk_path = os.path.join(resigned_apk_dir, resigned_apk_name)
-    if keystore_dir_path == None:
+    if keystore_dir_path is None:
         keystore_dir_path = os.path.join(os.environ['HOME'], '.android')
     keystore_path = os.path.join(keystore_dir_path, keystore_name)
 
@@ -88,10 +89,10 @@ def resign_app_under_test(local_utils,
 
     if local_utils.sys_is_windows:
         zipalign_search_path = os.path.join(local_utils.android_home,
-                                             'build-tools', '*', 'zipalign.exe')
+                                            'build-tools', '*', 'zipalign.exe')
     else:
         zipalign_search_path = os.path.join(local_utils.android_home,
-                                             'build-tools', '*', 'zipalign')
+                                            'build-tools', '*', 'zipalign')
     zipalign_tool = glob.glob(zipalign_search_path)[-1]
     local_utils.run_system('%s 4 %s %s' % (zipalign_tool,
                                            resigned_temp_apk_path, resigned_apk_path))

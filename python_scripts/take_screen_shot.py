@@ -6,6 +6,7 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 def take_screen_shot(local_utils, phone_result_dir_path=None,
                      result_dir_path=None, device_model=None, device_id=None):
     '''take a screen shot from phone'''
@@ -24,7 +25,7 @@ def take_screen_shot(local_utils, phone_result_dir_path=None,
     if device_model is not None:
         device_model = device_model.replace(' ', '_')
         device_model_dir_path = os.path.join(result_dir_path, device_model)
-        screen_shot_path = os.path.join(device_model_dir_path, '%s_%s.png' \
+        screen_shot_path = os.path.join(device_model_dir_path, '%s_%s.png'
                                         % (device_model, local_utils.timestamp()))
     else:
         device_model_dir_path = result_dir_path
@@ -35,8 +36,8 @@ def take_screen_shot(local_utils, phone_result_dir_path=None,
 
     if device_id is not None:
         screencap_str = '-s %s shell /system/bin/screencap' % device_id
-        pull_str = '-s %s pull' %  device_id
-        rm_str = '-s %s shell rm' %  device_id
+        pull_str = '-s %s pull' % device_id
+        rm_str = '-s %s shell rm' % device_id
     else:
         screencap_str = 'shell /system/bin/screencap'
         pull_str = 'pull'
@@ -44,8 +45,7 @@ def take_screen_shot(local_utils, phone_result_dir_path=None,
 
     screen_shot_process = local_utils.run_adb('%s -p %s/tmp.png'
                                               % (screencap_str, phone_result_dir_path))
-    (screen_shot_process_stdout, screen_shot_process_stderr) = \
-                                                screen_shot_process.communicate()
+    (screen_shot_process_stdout, screen_shot_process_stderr) = screen_shot_process.communicate()
     print screen_shot_process_stdout
     print screen_shot_process_stderr
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
 #         result_path = take_screen_shot(local_utils)
 #         print 'refer screen shot to %s\n' % result_path
 
-        devices_list = local_utils.get_devices_list();
+        devices_list = local_utils.get_devices_list()
         print devices_list
         for each_device in devices_list:
             device_id = each_device.get('device_id')
@@ -79,10 +79,10 @@ if __name__ == '__main__':
             print 'device_model: %s; device_id: %s' % (device_model, device_id)
             print 'take a screen shot at %s ...' % device_model
             result_path = take_screen_shot(local_utils=local_utils,
-                                          phone_result_dir_path=None,
-                                          result_dir_path=None,
-                                          device_model=device_model,
-                                          device_id=device_id)
+                                           phone_result_dir_path=None,
+                                           result_dir_path=None,
+                                           device_model=device_model,
+                                           device_id=device_id)
             print 'refer screen shot to %s\n' % result_path
 
     except Exception, ex:

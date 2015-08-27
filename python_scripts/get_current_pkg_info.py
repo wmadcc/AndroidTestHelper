@@ -8,6 +8,7 @@ import shutil
 from script_utils import utils
 from script_utils import static_variables
 
+
 def get_aapt_tool(local_utils):
     if local_utils.sys_is_windows:
         aapt_search_path = os.path.join(local_utils.android_home, 'build-tools', '*', 'aapt.exe')
@@ -16,6 +17,7 @@ def get_aapt_tool(local_utils):
     aapt_tool = glob.glob(aapt_search_path)[-1]
 
     return aapt_tool
+
 
 def get_match_apk(local_utils, package_name=None,
                   target_path=None, device_id=None, device_model=None):

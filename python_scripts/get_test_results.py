@@ -6,6 +6,7 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 def get_test_result(local_utils, phone_result_dir_path=None,
                     result_dir_path=None, device_model=None, device_id=None):
     '''get robotium test results from phone'''
@@ -40,7 +41,7 @@ def get_test_result(local_utils, phone_result_dir_path=None,
     pull_process = local_utils.run_adb('%s %s %s' % (pull_str,
                                                      phone_result_dir_path,
                                                      device_model_dir_path))
-    (pull_process_stdout, pull_process_stderr) = pull_process.communicate();
+    (pull_process_stdout, pull_process_stderr) = pull_process.communicate()
     print pull_process_stdout
     print pull_process_stderr
 
@@ -59,7 +60,7 @@ if __name__ == '__main__':
 #         result_path = get_test_result(local_utils)
 #         print 'test results are now in %s\n' % result_path
 
-        devices_list = local_utils.get_devices_list();
+        devices_list = local_utils.get_devices_list()
         print devices_list
         for each_device in devices_list:
             device_id = each_device.get('device_id')

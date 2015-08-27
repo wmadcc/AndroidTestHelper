@@ -6,6 +6,7 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 if __name__ == '__main__':
     try:
         local_utils = utils.Utils()

@@ -6,6 +6,7 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 def get_match_apk(local_utils, package_name=None,
                   target_path=None, device_id=None, device_model=None):
     '''backup specific apk to target path'''
@@ -59,7 +60,7 @@ if __name__ == '__main__':
 #         result_path = get_match_apk(local_utils)
 #         print 'refer target apk to %s\n' % result_path
 
-        devices_list = local_utils.get_devices_list();
+        devices_list = local_utils.get_devices_list()
         print devices_list
         for each_device in devices_list:
             device_id = each_device.get('device_id')

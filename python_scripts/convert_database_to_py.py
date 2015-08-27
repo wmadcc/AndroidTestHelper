@@ -8,6 +8,7 @@ import sqlite3
 from script_utils import static_variables
 from script_utils import utils
 
+
 def convert_database_to_py(local_utils, src_database_file=None, dest_py_dir=None):
     file_path = os.path.abspath(__file__)
     file_dir = os.path.dirname(file_path)
@@ -22,12 +23,12 @@ def convert_database_to_py(local_utils, src_database_file=None, dest_py_dir=None
         src_database_file_list = glob.glob(database_search_path)
 
         if len(src_database_file_list) == 0:
-            raise Exception, ('no database file in %s' % src_database_dir)
+            raise Exception('no database file in %s' % src_database_dir)
         else:
             src_database_file = src_database_file_list[0]
 
     if not os.path.exists(src_database_file):
-        raise Exception, ('%s not exist' % src_database_file)
+        raise Exception('%s not exist' % src_database_file)
 
     if dest_py_dir is None:
         dest_py_dir = os.path.join(root_dir, static_variables.DATABASE_PY_DIR_NAME)
@@ -99,7 +100,7 @@ if __name__ == '__main__':
         result_file = convert_database_to_py(local_utils=local_utils,
                                              src_database_file=None,
                                              dest_py_dir=None)
-        print 'refer result file to %s\n'  % result_file
+        print 'refer result file to %s\n' % result_file
 
     except Exception, ex:
         print 'ERROR: %s\n' % str(ex)

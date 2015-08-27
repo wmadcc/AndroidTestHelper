@@ -10,6 +10,7 @@ import string
 from script_utils import utils
 from script_utils import static_variables
 
+
 def get_cpu_and_memory(local_utils, device_id=None, device_model=None,
                        times=0, interval=1, pkg_name=None, strict_match=False):
     result_dict = {}
@@ -78,7 +79,7 @@ def get_cpu_and_memory(local_utils, device_id=None, device_model=None,
         if strict_match and process_name != pkg_name:
             continue
 
-        if not result_dict.has_key(process_name):
+        if process_name not in result_dict:
             result_dict[process_name] = {'cpu': [], 'memory': []}
 
         result_dict[process_name]['cpu'].append(line_list[2])
@@ -88,11 +89,12 @@ def get_cpu_and_memory(local_utils, device_id=None, device_model=None,
     print 'refer cpu and memory detail to %s' % file_path
     return result_dict
 
+
 def draw_chart(local_utils, src_data_dict, device_model=None, result_dir_path=None):
     try:
         if src_data_dict is None \
-            or len(src_data_dict) == 0:
-            raise Exception, 'src_data_dict is %s' % src_data_dict
+                or len(src_data_dict) == 0:
+            raise Exception('src_data_dict is %s' % src_data_dict)
 
         import pychartdir
 
@@ -134,8 +136,8 @@ def draw_chart(local_utils, src_data_dict, device_model=None, result_dir_path=No
                 chart.setPlotArea(60, 100, xArea - 100, 650)
                 chart.addLegend(50, 30, 0, 'arialbd.ttf', 15).setBackground(pychartdir.Transparent)
 
-                chart.addTitle('cpu and memory info', 'timesbi.ttf', \
-                               15).setBackground(0xffffff, 0x000000, pychartdir.glassEffect())
+                chart.addTitle('cpu and memory info', 'timesbi.ttf', 15)\
+                    .setBackground(0xffffff, 0x000000, pychartdir.glassEffect())
                 chart.yAxis().setTitle('Numerical', 'arialbd.ttf', 12)
                 chart.xAxis().setTitle('Time / %ss' % interval, 'arialbd.ttf', 12)
 
@@ -170,7 +172,7 @@ def draw_chart(local_utils, src_data_dict, device_model=None, result_dir_path=No
         if device_model is not None:
             device_model = device_model.replace(' ', '_')
             device_model_dir_path = os.path.join(result_dir_path, device_model)
-            chart_file_path = os.path.join(device_model_dir_path, '%s_%s.png' \
+            chart_file_path = os.path.join(device_model_dir_path, '%s_%s.png'
                                            % (device_model, local_utils.timestamp()))
         else:
             device_model_dir_path = result_dir_path
@@ -207,8 +209,8 @@ if __name__ == '__main__':
         for each_device in devices_list:
             device_id = each_device.get('device_id')
             device_model = each_device.get('device_model')
-            result_dict = get_cpu_and_memory(local_utils=local_utils, device_id=device_id, \
-                                             device_model=device_model, times=times, \
+            result_dict = get_cpu_and_memory(local_utils=local_utils, device_id=device_id,
+                                             device_model=device_model, times=times,
                                              interval=interval, pkg_name=None, strict_match=False)
             chart_path = draw_chart(local_utils=local_utils, src_data_dict=result_dict,
                                     device_model=device_model, result_dir_path=None)

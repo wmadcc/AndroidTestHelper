@@ -3,6 +3,7 @@
 
 from script_utils import utils
 
+
 def batch_uninstall(local_utils, device_id=None, device_model=None):
     '''uninstall 3rd packages in android device'''
     if device_model is None:

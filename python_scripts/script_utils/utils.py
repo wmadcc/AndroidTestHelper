@@ -10,19 +10,20 @@ import subprocess
 
 import static_variables
 
+
 class Utils:
     def __init__(self):
         '''__init__'''
-        self.sys_plat     = platform.platform()
-        self.java_home    = os.getenv('JAVA_HOME')
+        self.sys_plat = platform.platform()
+        self.java_home = os.getenv('JAVA_HOME')
         self.android_home = os.getenv('ANDROID_HOME')
 
-        self.cur_dir      = os.path.abspath('.')
-        self.file_dir     = os.path.dirname(os.path.abspath(__file__))
+        self.cur_dir = os.path.abspath('.')
+        self.file_dir = os.path.dirname(os.path.abspath(__file__))
 
         if 'windows' in self.sys_plat.lower():
-            self.sys_is_windows = True;
-        else :
+            self.sys_is_windows = True
+        else:
             self.sys_is_windows = False
 
         if self.java_home is None:
@@ -74,13 +75,13 @@ class Utils:
 
         print 'run: %s\n' % commands
 
-        return subprocess.Popen(commands, shell=True, \
+        return subprocess.Popen(commands, shell=True,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def run_adb(self, command):
         '''get a subprocess to run adb command'''
         if self.android_home is None:
-            raise Exception, 'ANDROID_HOME is None, please check system settings'
+            raise Exception('ANDROID_HOME is None, please check system settings')
 
         if self.sys_is_windows:
             adb_tool = os.path.join(self.android_home, 'platform-tools', 'adb.exe')
@@ -97,7 +98,7 @@ class Utils:
     def run_adb_shell(self, command):
         '''get a subprocess to run adb shell command'''
         if self.android_home is None:
-            raise Exception, 'ANDROID_HOME is None, please check system settings'
+            raise Exception('ANDROID_HOME is None, please check system settings')
 
         if self.sys_is_windows:
             adb_tool = os.path.join(self.android_home, 'platform-tools', 'adb.exe')
@@ -175,7 +176,7 @@ class Utils:
             print 'kill PID: %s successfully!' % pid
 
         else:
-            raise Exception, 'unknown system!'
+            raise Exception('unknown system!')
 
     def is_any_device_connected(self):
         '''check whether there is any android device connected'''
@@ -198,7 +199,7 @@ class Utils:
             time.sleep(1)
 
         if not self.is_any_device_connected():
-            raise Exception, 'no android device connected!'
+            raise Exception('no android device connected!')
 
     def get_devices_list(self):
         '''get connected android devices list'''
@@ -361,7 +362,7 @@ class Utils:
 
     def get_file_name(self, file_path):
         '''get file name from file path exclude file type'''
-        file_full_name = os.path.basename(file_path);
+        file_full_name = os.path.basename(file_path)
         last_point_index = file_full_name.rfind('.')
 
         if last_point_index < 0:
@@ -373,17 +374,17 @@ class Utils:
         '''zip target directory into zip file '''
         if zip_file_name is None:
             if os.path.isfile(dir_name):
-                zip_file_name =  os.path.join(os.path.dirname(dir_name), \
-                                          self.get_file_name(dir_name) + '.zip')
+                zip_file_name = os.path.join(os.path.dirname(dir_name),
+                                             self.get_file_name(dir_name) + '.zip')
             else:
-                zip_file_name =  os.path.join(os.path.dirname(dir_name), \
-                                          os.path.basename(dir_name) + '.zip')
+                zip_file_name = os.path.join(os.path.dirname(dir_name),
+                                             os.path.basename(dir_name) + '.zip')
 
         print 'zip %s to %s' % (dir_name, zip_file_name)
         zf = zipfile.ZipFile(zip_file_name, 'w', zipfile.ZIP_DEFLATED)
         if os.path.isfile(dir_name):
             zf.write(dir_name, os.path.basename(dir_name))
-        else :
+        else:
             files_list = []
             empty_dirs = []
             for root, dirs, files in os.walk(dir_name):
@@ -409,8 +410,8 @@ class Utils:
 
     def unzip_file(self, zip_file_name, unzip_to_dir=None):
         '''unzip zip file to target directory'''
-        if  unzip_to_dir is None:
-            unzip_to_dir = os.path.join(os.path.dirname(zip_file_name), \
+        if unzip_to_dir is None:
+            unzip_to_dir = os.path.join(os.path.dirname(zip_file_name),
                                         self.get_file_name(zip_file_name))
 
         print 'unzip %s to %s' % (zip_file_name, unzip_to_dir)

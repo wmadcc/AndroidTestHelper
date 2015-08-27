@@ -6,6 +6,7 @@ import os
 from script_utils import utils
 from script_utils import static_variables
 
+
 def batch_install(local_utils, apks_to_install_dir_path=None,
                   device_id=None, device_model=None):
     if apks_to_install_dir_path is None:
@@ -42,7 +43,7 @@ def batch_install(local_utils, apks_to_install_dir_path=None,
                 apks_count += 1
 
     if apks_count == 0:
-        raise Exception, 'there is no apk in %s' % apks_to_install_dir_path
+        raise Exception('there is no apk in %s' % apks_to_install_dir_path)
 
 if __name__ == '__main__':
     try:
