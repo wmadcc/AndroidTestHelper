@@ -15,6 +15,7 @@ TEST_RESULT_DIR_NAME = '51TEST'
 SCREEN_SHOTS_DIR_NAME = 'screen_shots'
 SCREEN_RECORDS_DIR_NAME = 'screen_records'
 CPU_AND_MEMORY_DIR_NAME = 'cpu_and_memory'
+BURNING_POINTS = 'burying_points'
 
 SRC_DATABASE_DIR_NAME = 'src_database'
 DATABASE_PY_DIR_NAME = 'database_py'
